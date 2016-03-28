@@ -11,8 +11,10 @@ class Route
     private $controler;
     private $module;
     private $param = array();
-    const HOME_DEFAULT = 'home';
-    const MODULE_DEFAULT = 'home';
+
+    private static $CONTROLER_DEFAULT;
+    private static $MODULE_DEFAULT;
+
 
     /**
      * @return mixed
@@ -39,14 +41,25 @@ class Route
     }
 
     /**
+     * @param $cont
+     * @param $mod
+     * Установка значений контролера и модели
+     */
+    public function initRoute($cont='index', $mod='')
+    {
+        self::$CONTROLER_DEFAULT = $cont;
+        self::$MODULE_DEFAULT = $mod;
+    }
+
+    /**
      * constructor.
      *
      *
      */
-    public function __construct(){
+    public function parseUrl(){
         if ($_SERVER['REQUEST_URI'] == '/') {
-            $this->page = HOME_DEFAULT;
-            $this->module = MODULE_DEFAULT;
+            $this->controler = self::$CONTROLER_DEFAULT;
+            $this->module = self::$MODULE_DEFAULT;
         }
         else {
             $URL_Path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
