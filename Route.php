@@ -66,8 +66,6 @@ class Route
     }
 
     /**
-     * constructor.
-     *
      *
      */
     public function parseUrl(){
