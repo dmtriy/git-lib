@@ -43,8 +43,15 @@ class Db
         }
         return self::$instance;
     }
-    public static function setConfig($arrayConfig){
 
+    /**
+     * @param $arrayConfig
+     */
+    public static function setConfig($arrayConfig){
+        foreach ($arrayConfig as $key => $data){
+            $property = $key . 'Db';
+            self::$$property = $data;
+        }
 
     }
 }
