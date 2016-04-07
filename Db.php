@@ -8,10 +8,10 @@
  */
 class Db
 {
-    private static $nameDb;
-    private static $hostDb;
-    private static $userDb;
-    private static $passDb;
+    private static $nameDb = 'information_schema';
+    private static $hostDb = 'localhost';
+    private static $userDb = 'root';
+    private static $passDb = '';
     private static $instance;
     /**
      * Создание автоматического
