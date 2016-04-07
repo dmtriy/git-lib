@@ -52,6 +52,5 @@ class Db
             $property = $key . 'Db';
             self::$$property = $data;
         }
-
     }
 }
