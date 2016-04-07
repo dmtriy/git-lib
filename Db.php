@@ -18,7 +18,7 @@ class Db
      * подключения к базе данных
      * через метод getInstance()
      */
-    protected function __construct(){
+    private function __construct(){
         try{
             $this->db = new PDO("mysql:dbname=".self::$nameDb.";host=".self::$hostDb,self::$userDb,self::$passDb);
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -47,10 +47,12 @@ class Db
     /**
      * @param $arrayConfig
      */
-    public static function setConfig($arrayConfig){
-        foreach ($arrayConfig as $key => $data){
-            $property = $key . 'Db';
-            self::$$property = $data;
+    public static function setConfig($arrayConfig = array()){
+        if (count($arrayConfig) > 0) {
+            foreach ($arrayConfig as $key => $data){
+                $property = $key . 'Db';
+                self::$$property = $data;
+            }
         }
     }
 }
